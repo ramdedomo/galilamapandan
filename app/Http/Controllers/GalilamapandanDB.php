@@ -639,10 +639,9 @@ class GalilamapandanDB extends Controller {
             ->select("*")
             ->get();
 
-         $desc2 = DB::table('advocacy')
-            ->join('advocacy_campaigns', 'advocacy.advocacy_id', '=', 'advocacy_campaigns.advocacy_id')
+           $desc2 = DB::table('advocacy')
             ->select("*")
-            ->get();
+            ->get();        
 
             $socials = DB::table('social_medias')
             ->select("*")
