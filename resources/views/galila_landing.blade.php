@@ -95,9 +95,6 @@
 
                         @if (($itm->carousel_item_design) == 1)
 
-                                @php
-                                    header('Content-type: image/png');
-                                @endphp
 
                                 <div class="row gx- my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5"
                                 style="
@@ -124,10 +121,6 @@
 
                             @elseif ($itm->carousel_item_design == 2)
 
-                            @php
-                            header('Content-type: image/png');
-                        @endphp
-
 
                                 <div class="row gx- my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5 carouselBG"
 
@@ -152,10 +145,6 @@
                             </div>
 
                             @else
-
-                            @php
-                            header('Content-type: image/png');
-                        @endphp
 
 
                                 <div class="my-lg-5 py-lg-5 rounded p-5 zoom carouselBG2"
