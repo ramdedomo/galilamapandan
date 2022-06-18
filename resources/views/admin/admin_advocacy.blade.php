@@ -83,7 +83,7 @@
 
                     <span style="font-size: 10px" class="text-danger">@error('advocacydescription'){{ $message }} @enderror</span>
                     <div>
-                        <textarea style="border: none" rows="8" type="text" class="form-control" @if(isset($desc[0])){{'value="' . $desc[0]->advocacy_desc . '"'}}@endif" name="advocacydescription" placeholder="Advocacy Description">@if(isset($desc[0])) {{ $desc[0]->advocacy_desc }} @endif</textarea>
+                        <textarea style="border: none" rows="8" type="text" class="form-control" @if(isset($desc[0])){{'value="' . $desc[0]->advocacy_desc . '"'}}@endif name="advocacydescription" placeholder="Advocacy Description">@if(isset($desc[0])) {{ $desc[0]->advocacy_desc }} @endif</textarea>
                     </div>
                     <div class="mt-2">
                         <button type="submit" value="Submit" style="background-color:#03C85D; color: white" class="btn mt-2">Update Changes</button>
