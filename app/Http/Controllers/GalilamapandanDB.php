@@ -710,7 +710,7 @@ class GalilamapandanDB extends Controller {
 
           $items = DB::table('carousel_items')
           ->select("*")
-          ->get();
+          ->get()->toArray();
 
 
      return view('admin.admin_index', ['desc'=>$desc, 'desc2'=>$desc2, 'desc3'=>$desc3, 'desc4'=>$desc4, 'socials'=>$socials, 'items'=>$items]);
@@ -1946,7 +1946,7 @@ class GalilamapandanDB extends Controller {
 
           $items = DB::table('carousel_items')
           ->select("*")
-          ->get();
+          ->get()->toArray();
 
       return view('galila_landing', compact('desc', 'desc2', 'desc3', 'desc4', 'socials', 'items'));
 
