@@ -72,8 +72,8 @@
                         <div id="carouselExampleControls" class="carousel slide d-none d-sm-block" data-bs-ride="carousel">
                             <div class="carousel-inner">
 
-                                @if(isset($items))
-                            @foreach ($items as $itm)  
+                           @if(isset($items))
+                            @foreach ($items as $a => $itm)  
 
                             
                             @if (($itm->carousel_item_active) == 1)
