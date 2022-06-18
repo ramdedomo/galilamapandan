@@ -103,7 +103,7 @@
                                 background-repeat: no-repeat;
                                 
                                 ">
-                                    <div class="col-xl-4 col-xxl-4 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src={{ asset('assets/galila_logo300x300.png') }} alt="..." /></div>
+                                    <div class="col-xl-4 col-xxl-4 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src={{ asset('../public/assets/galila_logo300x300.png') }} alt="..." /></div>
                                     <div class="col-lg-8 col-xl-7 col-xxl-6">
                                         <div class="my-5 text-center text-xl-start">
                                             <h1 class="display-5 fw-bolder text-dark mb-2 montserrat">{{ $itm->carousel_item_header }}</h1>
