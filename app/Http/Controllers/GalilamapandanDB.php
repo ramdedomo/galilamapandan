@@ -1948,7 +1948,7 @@ class GalilamapandanDB extends Controller {
           ->select("*")
           ->get();
 
-      return view('galila_landing', ['desc'=>$desc, 'desc2'=>$desc2, 'desc3'=>$desc3,  'desc4'=>$desc4, 'socials'=>$socials, 'items'=>$items]);
+      return view('galila_landing', compact('desc', 'desc2', 'desc3', 'desc4', 'socials', 'items'));
 
    }
 
