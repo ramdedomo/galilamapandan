@@ -103,7 +103,7 @@
                                 style="
                                 
                                 height: 580px;
-                                background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url(data:image/png;base64,{{ base64_decode(hex2bin(substr(strlval($itm->carousel_item_bg, 2)))) }}); no-repeat;
+                                background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url(data:image/png;base64,{{ base64_decode(hex2bin(substr({{strlval($itm->carousel_item_bg, 2)}}))) }}) no-repeat;
                                 background-size: cover;
                                 background-position: center;
                                 background-repeat: no-repeat;
@@ -133,7 +133,7 @@
 
                                     style="
                                     height: 580px;
-                                    background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url(data:image/png;base64,{{ base64_decode(hex2bin(substr(strlval($itm->carousel_item_bg, 2)))) }}); no-repeat;
+                                    background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url(data:image/png;base64,{{ base64_decode(hex2bin(substr({{strlval($itm->carousel_item_bg, 2)}}))) }}) no-repeat;
                                     background-size: cover;
                                     background-position: center;
                                     background-repeat: no-repeat;
