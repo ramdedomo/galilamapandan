@@ -60,7 +60,7 @@
                     <div class="col-lg-12 col-xl-12 col-xxl-12  p-0">
                             <div class="my-5 text-xl-start">
                                 <div class="mb-3">
-                                    <a class="text-decoration-none" href="/advocacy"><div class="badge bg-galila rounded-pill mb-2">Galila Mapandan Advocacy</div></a> - 
+                                    <a class="text-decoration-none" href="/admin/advocacy"><div class="badge bg-galila rounded-pill mb-2">Galila Mapandan Advocacy</div></a> - 
                                     <a class="text-decoration-none" href=@php echo "/admin/advocacy/" . $desc[0]->campaign_id . "/" @endphp><div class="badge bg-galila rounded-pill mb-2">{{ $desc[0]->campaign_name }}</div></a> -
                                     <div class="badge text-dark rounded-pill mb-2">{{ $desc[0]->featured_name }}</div>
                                 </div>
