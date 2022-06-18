@@ -83,9 +83,8 @@
 
                             <div class="carousel-inner">
                                 
-                            @foreach ($items as $a => $itm)  
+                            @foreach ($items as $itm)  
 
-                            
                             @if (($itm->carousel_item_active) == 1)
                             <div class="carousel-item p-3 active">
                             @else
