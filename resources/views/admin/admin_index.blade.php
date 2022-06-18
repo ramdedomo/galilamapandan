@@ -71,6 +71,8 @@
 
                         <div id="carouselExampleControls" class="carousel slide d-none d-sm-block" data-bs-ride="carousel">
                             <div class="carousel-inner">
+
+                                @if(isset($items))
                             @foreach ($items as $itm)  
 
                             
@@ -146,6 +148,7 @@
                                 
                             @endif
                             @endforeach
+                            @endif
 
 
                             </div>
@@ -202,7 +205,7 @@
 
 
                     <div class="row gx-5">
-
+                        @if(isset($desc))
                         @foreach ($desc as $activities)
 
                         @if($activities->home_featured == 1)
@@ -240,6 +243,7 @@
                         @endif
 
                         @endforeach
+                        @endif
                             
                         
 
@@ -285,7 +289,7 @@
 
 
                     <div class="row gx-5">
-
+                        @if(isset($desc2))
                         @foreach ($desc2 as $campaigns)
 
                         @if($campaigns->home_featured_camp == 1)
@@ -323,7 +327,7 @@
                         @endif
 
                         @endforeach
-
+                        @endif
 
              
                     </div>
@@ -356,11 +360,11 @@
                         <div class="col-md-7 text-center">
                         <h3 class="mb-3">Galila Mapandan Team</h3>
                         </div>
-                        <h6 class="subtitle text-center">{{ $desc4[0]->the_team_desc }}</h6>
+                        <h6 class="subtitle text-center">@if(isset($desc4[0])){{ $desc4[0]->the_team_desc }}@endif</h6>
                     </div>
 
                     <div class="row gx-5 mb-5" style="margin-top: 100px">
-                        
+                        @if(isset($desc3))
                         @foreach ($desc3 as $team)
 
                         <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 zoom">
@@ -377,6 +381,7 @@
                         </div>
                         
                         @endforeach
+                        @endif
 
 
 
@@ -411,7 +416,7 @@
 
                     <div class="mx-0 my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5 bg-dark text-light position-relative">
                         <h3 class="mb-3">Contact Us</h3>
-                        <p class="fw-normal">{{ $desc4[0]->contact_desc }}</p>
+                        <p class="fw-normal">@if(isset($desc4[0])){{ $desc4[0]->contact_desc }}@endif</p>
 
                         <hr class="mt-3">
 
@@ -463,7 +468,7 @@
                                       <button type="button" class="btn m-0 p-0" style="border: none;" data-bs-dismiss="modal" aria-label="Close"><i class=" text-secondary fs-5 bi bi-x-circle-fill"></i></button>
                                     </div>
                                     <div class="modal-body p-2">
-        
+                                        @if(isset($socials))
                                         @foreach ($socials as $socmed)
     
                                         <div class="card zoom mb-2" style="background-image: linear-gradient(to left, #03c85c42,white)">
@@ -473,6 +478,7 @@
                                         </div>
     
                                         @endforeach
+                                        @endif
         
                                          </div>                         
                                         
@@ -489,7 +495,7 @@
                                     @php
                                         $count = 1;
                                     @endphp
-
+                                    @if(isset($socials))
                                     @foreach ($socials as $socmed)
 
                                     @if ($count == 3)
@@ -512,6 +518,7 @@
                                       @endphp
 
                                     @endforeach
+                                    @endif
 
 
                                 </div>
@@ -542,9 +549,11 @@
                         <div class="small m-0 text-white">&copy; Copyright <img class="mx-2" width="15px" src={{ asset('assets/galila_logo_small.png') }} alt="..." /> Galila Mapandan 2022  <a class="link-light small mx-2" href="/logout"><i style="font-size: 13px; color:white" class="bi bi-box-arrow-right"></i></a></div>   
                     </div>
                     <div class="col-auto">
+                        @if(isset($socials))
                         @foreach ($socials as $socmed)
                         <a class="link-light small mx-2" href='{{ $socmed->social_link }}'><i style="font-size: 20px; color:white" class="bi bi-{{ $socmed->social_name }}"></i></a>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
