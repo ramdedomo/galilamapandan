@@ -78,7 +78,8 @@
 
                         <div id="carouselExampleControls" class="carousel slide d-none d-sm-block"  data-bs-ride="carousel">
 
-
+    
+                            @if(isset($items))
 
                             <div class="carousel-inner">
                             @foreach ($items as $itm)  
@@ -157,7 +158,7 @@
                             @endif
                             @endforeach
 
-
+                            @endif
                             </div>
 
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -196,7 +197,7 @@
             <section class="py-3">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
-
+                        @if(isset($desc))
                         @foreach ($desc as $activities)
 
 
@@ -215,7 +216,7 @@
 
 
                         @endforeach
-                            
+                            @endif
                         
 
                     </div>
@@ -244,7 +245,7 @@
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
 
-
+                        @if(isset($desc2))
                         @foreach ($desc2 as $campaigns)
 
 
@@ -264,6 +265,7 @@
                         </div>
 
                         @endforeach
+                        @endif
 
 
              
@@ -305,7 +307,8 @@
                         @php
                             $membercounter = 1;
                         @endphp
-                        
+
+                        @if(isset($desc3))
                         @foreach ($desc3 as $team)
 
                         @if($membercounter <= 6)
@@ -328,6 +331,7 @@
                         @endphp
                         
                         @endforeach
+                        @endif
 
 
 
@@ -414,6 +418,7 @@
                                     </div>
                                     <div class="modal-body p-2">
 
+                                        @if(isset($socials))
                                         @foreach ($socials as $socmed)
     
                                         <div class="card zoom mb-2" style="background-image: linear-gradient(to left, #03c85c42,white)">
@@ -423,6 +428,7 @@
                                         </div>
     
                                         @endforeach
+                                        @endif
         
                                          </div>                         
                                         
@@ -440,6 +446,7 @@
                                         $count = 1;
                                     @endphp
 
+                                    @if(isset($socials))
                                     @foreach ($socials as $socmed)
 
                                     @if ($count == 3)
@@ -462,6 +469,7 @@
                                     @endphp
 
                                     @endforeach
+                                    @endif
 
 
                                 </div>
@@ -488,9 +496,11 @@
                         <div class="small m-0 text-white">&copy; Copyright <img class="mx-2" width="15px" src={{ asset('assets/galila_logo_small.png') }} alt="..." /> Galila Mapandan 2022 <a class="link-light small mx-2" href="/login"><i style="font-size: 13px; color:white" class="bi bi-shield-lock-fill"></i></a></div>   
                     </div>
                     <div class="col-auto">
+                        @if(isset($socials))
                         @foreach ($socials as $socmed)
                         <a class="link-light small mx-2" href='{{ $socmed->social_link }}'><i style="font-size: 20px; color:white" class="bi bi-{{ $socmed->social_name }}"></i></a>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
