@@ -139,7 +139,7 @@
                             <div class="card-body p-4">
                                 <div class="badge bg-galila rounded-pill mb-2">Activities and Programs</div>
                                 <a class="text-decoration-none link-dark stretched-link" href={{ "/admin/activitiesandprograms/" . $activities->year_id }}><h1 class="card-title mb-3">{{ $activities->year }}</h1></a>
-                                <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text mb-0">{!! Str::words($activities->year_desc, 20, ' ...') !!}</p>
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                 <div class="d-flex align-items-end justify-content-between">
