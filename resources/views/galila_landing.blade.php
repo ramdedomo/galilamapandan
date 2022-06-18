@@ -299,7 +299,7 @@
                         <div class="col-md-7 text-center">
                         <h3 class="mb-3">Galila Mapandan Team</h3>
                         </div>
-                        <h6 class="subtitle text-center">{{ $desc4[0]->the_team_desc }}</h6>
+                        <h6 class="subtitle text-center"> @if(isset($desc4[0])){{ $desc4[0]->the_team_desc }}@endif</h6>
                     </div>
 
                     <div class="row gx-5 mb-5" style="margin-top: 100px">
@@ -365,7 +365,7 @@
 
                     <div class="mx-0 my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5 bg-dark text-light position-relative">
                         <h3 class="mb-3">Contact Us</h3>
-                        <p class="fw-normal">{{ $desc4[0]->contact_desc }}</p>
+                        <p class="fw-normal">@if(isset($desc4[0])){{ $desc4[0]->contact_desc }}@endif</p>
 
                         <hr class="mt-3">
 
