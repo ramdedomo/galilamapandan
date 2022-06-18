@@ -370,7 +370,7 @@
                             <div class="col-xl-8 col-lg-8 col-md-12 pe-lg-3">
 
 
-                                <form action="{{ route('sendMessage')}}" method="request" class="row g-3">
+                                <form action="{{ route('sendMessage')}}" method="POST" class="row g-3">
 
                                     @csrf
                                     <div class="col-md-6">
