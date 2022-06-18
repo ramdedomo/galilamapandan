@@ -83,7 +83,7 @@
 
                     <span style="font-size: 10px" class="text-danger">@error('advocacydescription'){{ $message }} @enderror</span>
                     <div>
-                        <textarea style="border: none" rows="8" type="text" class="form-control" value="{{ $desc2[0]->advocacy_desc }}" name="advocacydescription" placeholder="Advocacy Description">{{ $desc2[0]->advocacy_desc }}</textarea>
+                        <textarea style="border: none" rows="8" type="text" class="form-control" value="@if(!empty($socials)){{ $desc2[0]->advocacy_desc }}@endif" name="advocacydescription" placeholder="Advocacy Description">@if(!empty($socials)){{ $desc2[0]->advocacy_desc }}@endif/textarea>
                     </div>
                     <div class="mt-2">
                         <button type="submit" value="Submit" style="background-color:#03C85D; color: white" class="btn mt-2">Update Changes</button>
@@ -134,7 +134,8 @@
                         @endif
 
                         <div class="row gx-5">
-
+                            
+                            @if(!empty($desc))
                             @foreach ($desc as $advocacy)
 
                             <div class="col-lg-6 mb-5 col-md-12 zoom">
@@ -154,6 +155,7 @@
                             </div>
 
                             @endforeach
+                            @endif
                          
                  
                         </div>
@@ -289,9 +291,11 @@
                         <div class="small m-0 text-white">&copy; Copyright <img class="mx-2" width="15px" src={{ asset('assets/galila_logo_small.png') }} alt="..." /> Galila Mapandan 2022  <a class="link-light small mx-2" href="/logout"><i style="font-size: 13px; color:white" class="bi bi-box-arrow-right"></i></a></div>   
                     </div>
                     <div class="col-auto">
+                        @if(!empty($socials))
                         @foreach ($socials as $socmed)
                         <a class="link-light small mx-2" href='{{ $socmed->social_link }}'><i style="font-size: 20px; color:white" class="bi bi-{{ $socmed->social_name }}"></i></a>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
