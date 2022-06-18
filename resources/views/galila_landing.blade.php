@@ -94,11 +94,27 @@
 
 
                         @if (($itm->carousel_item_design) == 1)
+
+                        @php
+
+                        $resim = $itm->carousel_item_bg;  
+                        
+                        // Remove 0x from the string start
+                        $resim = substr($resim, 2);
+                        
+                        // Convert hexadecimal string to binary
+                        $bin = hex2bin($resim);
+                        
+                        // Convert binary to base64
+                        $data = base64_encode($bin);
+
+                        @endphp
+
                                 <div class="row gx- my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5"
                                 style="
                                 
                                 height: 580px;
-                               
+                                background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url('data:image/png;base64,{{ $data }}') no-repeat;
                                 background-size: cover;
                                 background-position: center;
                                 background-repeat: no-repeat;
@@ -119,11 +135,26 @@
 
                             @elseif ($itm->carousel_item_design == 2)
 
+                            @php
+
+                            $resim = $itm->carousel_item_bg;  
+                            
+                            // Remove 0x from the string start
+                            $resim = substr($resim, 2);
+                            
+                            // Convert hexadecimal string to binary
+                            $bin = hex2bin($resim);
+                            
+                            // Convert binary to base64
+                            $data = base64_encode($bin);
+    
+                            @endphp
+
                                 <div class="row gx- my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5 carouselBG"
 
                                     style="
                                     height: 580px;
-                                  
+                                    background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url('data:image/png;base64,{{ $data }}') no-repeat;
                                     background-size: cover;
                                     background-position: center;
                                     background-repeat: no-repeat;
@@ -143,11 +174,26 @@
 
                             @else
 
+                            @php
+
+                            $resim = $itm->carousel_item_bg;  
+                            
+                            // Remove 0x from the string start
+                            $resim = substr($resim, 2);
+                            
+                            // Convert hexadecimal string to binary
+                            $bin = hex2bin($resim);
+                            
+                            // Convert binary to base64
+                            $data = base64_encode($bin);
+    
+                            @endphp
+
                                 <div class="my-lg-5 py-lg-5 rounded p-5 zoom carouselBG2"
 
                                 style="
                                 height: 580px;
-
+                                background-image: url('data:image/png;base64,{{ $data }}');
                                 background-position: center;
                                 background-size: cover;
                                 background-repeat: no-repeat;
