@@ -93,17 +93,12 @@
                             @endif
 
 
-                            @if (($itm->carousel_item_design) == 1)
-
-                            @php
-                                $data = $itm->carousel_item_bg;
-                            @endphp
-
+                        @if (($itm->carousel_item_design) == 1)
                                 <div class="row gx- my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5"
                                 style="
                                 
                                 height: 580px;
-                                background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url('data:image/png;base64,{{ $data }}') no-repeat;
+                                background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url(data:image/png;base64,{{ $itm->carousel_item_bg }}) no-repeat;
                                 background-size: cover;
                                 background-position: center;
                                 background-repeat: no-repeat;
@@ -115,7 +110,7 @@
                                             <h1 class="display-5 fw-bolder text-dark mb-2 montserrat">{{ $itm->carousel_item_header }}</h1>
                                             <p class="fw-normal text-dark-50 mb-4">{{ $itm->carousel_item_desc }}</p>
                                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                                <a class="btn text-light btn-lg px-4 me-sm-3" style="border-style: none; background-color:#03C85D" href="{{ $itm->carousel_item_url }}">{{ $itm->carousel_item_button_name }}</a>
+                                                <a class="mb-4 btn text-light btn-lg px-4 me-sm-3" style="border-style: none; background-color:#03C85D" href="{{ $itm->carousel_item_url }}">{{ $itm->carousel_item_button_name }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -124,15 +119,11 @@
 
                             @elseif ($itm->carousel_item_design == 2)
 
-                            @php
-                            $data = $itm->carousel_item_bg;
-                        @endphp
-
                                 <div class="row gx- my-lg-5 py-lg-5 align-items-center justify-content-center rounded p-5 carouselBG"
 
                                     style="
                                     height: 580px;
-                                    background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url('data:image/png;base64,{{ $data }}') no-repeat;
+                                    background: linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8)), url(data:image/png;base64,{{ $itm->carousel_item_bg }}) no-repeat;
                                     background-size: cover;
                                     background-position: center;
                                     background-repeat: no-repeat;
@@ -143,7 +134,7 @@
                                             <h1 class="display-5 fw-bolder text-dark mb-2 montserrat">{{ $itm->carousel_item_header }}</h1>
                                             <p class="fw-normal text-dark-50 mb-4">{{ $itm->carousel_item_desc }}</p>
                                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                                <a class="btn text-light btn-lg px-4 me-sm-3" style="border-style: none; background-color:#03C85D" href="{{ $itm->carousel_item_url }}">{{ $itm->carousel_item_button_name }}</a>
+                                                <a class="mb-4 btn text-light btn-lg px-4 me-sm-3" style="border-style: none; background-color:#03C85D" href="{{ $itm->carousel_item_url }}">{{ $itm->carousel_item_button_name }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -152,15 +143,11 @@
 
                             @else
 
-                            @php
-                            $data = $itm->carousel_item_bg;
-                        @endphp
-
-                                <div class="row gx- my-lg-5 py-lg-5 rounded p-5 zoom carouselBG2"
+                                <div class="my-lg-5 py-lg-5 rounded p-5 zoom carouselBG2"
 
                                 style="
                                 height: 580px;
-                                background-image: url('data:image/png;base64,{{ $data }}');
+                                background-image: url(data:image/png;base64,{{ $itm->carousel_item_bg }});
                                 background-position: center;
                                 background-size: cover;
                                 background-repeat: no-repeat;
