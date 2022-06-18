@@ -97,7 +97,7 @@
 
                         @php
 
-                        $resim = $itm->carousel_item_bg;  
+                       $resim = strval($itm->carousel_item_bg);   
                         
                         // Remove 0x from the string start
                         $resim = substr($resim, 2);
@@ -137,7 +137,7 @@
 
                             @php
 
-                            $resim = $itm->carousel_item_bg;  
+                            $resim = strval($itm->carousel_item_bg);   
                             
                             // Remove 0x from the string start
                             $resim = substr($resim, 2);
@@ -176,7 +176,7 @@
 
                             @php
 
-                            $resim = $itm->carousel_item_bg;  
+                            $resim = strval($itm->carousel_item_bg);  
                             
                             // Remove 0x from the string start
                             $resim = substr($resim, 2);
