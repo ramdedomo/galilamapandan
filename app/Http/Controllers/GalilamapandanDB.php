@@ -643,7 +643,7 @@ class GalilamapandanDB extends Controller {
             ->select("*")
             ->get();
 
-       return view('galila_advocacy',['desc'=>$desc], ['desc2'=>$desc, 'socials'=>$socials]);
+       return view('galila_advocacy', compact(desc, desc2, socials));
        
     }
 
