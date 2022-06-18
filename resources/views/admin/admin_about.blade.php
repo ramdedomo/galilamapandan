@@ -85,7 +85,7 @@
                         @csrf
                         <span style="font-size: 10px" class="text-danger">@error('aboutdescription'){{ $message }} @enderror</span>
                         <div>
-                            <textarea style="border: none" rows="8" type="text" class="form-control" value="{{ $desc[0]->about_desc }}" name="aboutdescription" placeholder="About Description">{{ $desc[0]->about_desc }}</textarea>
+                            <textarea style="border: none" rows="8" type="text" class="form-control"  @if(isset($desc[0])){{'value="' . $desc[0]->about_desc . '"'}}@endif name="aboutdescription" placeholder="About Description">@if(isset($desc[0])){{ $desc[0]->about_desc }}@endif</textarea>
                         </div>
                         <div class="mt-2">
                             <button type="submit" value="Submit" style="background-color:#03C85D; color: white" class="btn mt-2">Update Changes</button>
@@ -108,7 +108,7 @@
                                             {{-- <img style="object-fit: cover;" width="600px" height="200px" src="https://images.pexels.com/photos/207896/pexels-photo-207896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top mb-2 rounded shadow" alt="..."> --}}
                                             <div class="card-body">
                                                 <a class="text-decoration-none link-dark stretched-link" href="/admin/about/theteam"><h1 class="card-title mb-3">THE TEAM</h1></a>
-                                                {{ $desc[0]->the_team_desc }}
+                                               @if(isset($desc[0])) {{ $desc[0]->the_team_desc }} @endif
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                             {{-- <img style="object-fit: cover;" width="600px" height="200px" src="https://images.pexels.com/photos/207896/pexels-photo-207896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top mb-2 rounded shadow" alt="..."> --}}
                                             <div class="card-body">
                                                 <a class="text-decoration-none link-dark stretched-link" href="/admin/about/contact"><h1 class="card-title mb-3">CONTACT US</h1></a>
-                                                {{ $desc[0]->contact_desc }}
+                                                @if(isset($desc[0])) {{ $desc[0]->contact_desc }} @endif
                                             </div>
                                         </div>
                                     </div>
@@ -141,9 +141,11 @@
                         <div class="small m-0 text-white">&copy; Copyright <img class="mx-2" width="15px" src={{ asset('assets/galila_logo_small.png') }} alt="..." /> Galila Mapandan 2022  <a class="link-light small mx-2" href="/logout"><i style="font-size: 13px; color:white" class="bi bi-box-arrow-right"></i></a></div>   
                     </div>
                     <div class="col-auto">
+                        @if(isset($socials))
                         @foreach ($socials as $socmed)
                         <a class="link-light small mx-2" href='{{ $socmed->social_link }}'><i style="font-size: 20px; color:white" class="bi bi-{{ $socmed->social_name }}"></i></a>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
