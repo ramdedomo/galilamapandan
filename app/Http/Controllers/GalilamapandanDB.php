@@ -638,16 +638,13 @@ class GalilamapandanDB extends Controller {
             ->join('advocacy_campaigns', 'advocacy.advocacy_id', '=', 'advocacy_campaigns.advocacy_id')
             ->select("*")
             ->get();
-
-           $desc2 = DB::table('advocacy')
-            ->select("*")
-            ->get();        
+    
 
             $socials = DB::table('social_medias')
             ->select("*")
             ->get();
 
-       return view('galila_advocacy', compact(desc, desc2, socials));
+            return view('galila_advocacy',['desc'=>$desc], ['desc2'=>$desc, 'socials'=>$socials]);
        
     }
 
