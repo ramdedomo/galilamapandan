@@ -57,7 +57,7 @@ Route::get('/advocacy/{id1}/{id}',[GalilamapandanDB::class, 'campaigns_campaign_
 Route::get('/activitiesandprograms/{id}',[GalilamapandanDB::class, 'activities_activity_desc_view']);
 Route::get('/activitiesandprograms',[GalilamapandanDB::class, 'activities_desc_view']);
 
-
+Route::post('sendMessage', [GalilamapandanDB::class, 'sendMessage'])->name('sendMessage');
 
 Route::group(['middleware'=>['sessionCheck']], function(){
     
@@ -66,7 +66,7 @@ Route::group(['middleware'=>['sessionCheck']], function(){
     Route::post('updateYearPhoto/{id}', [GalilamapandanDB::class, 'updateYearPhoto'])->name('updateYearPhoto');
     Route::post('updateAdvocacyPhoto/{id}', [GalilamapandanDB::class, 'updateAdvocacyPhoto'])->name('updateAdvocacyPhoto');
 
-    Route::post('sendMessage', [GalilamapandanDB::class, 'sendMessage'])->name('sendMessage');
+
 
     Route::post('updateAboutdesc', [GalilamapandanDB::class, 'updateAboutdesc'])->name('updateAboutdesc');
     Route::get('theteamdescUpdate', [GalilamapandanDB::class, 'theteamdescUpdate'])->name('theteamdescUpdate');
