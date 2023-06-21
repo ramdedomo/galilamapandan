@@ -78,21 +78,63 @@
                         
                 <section class="py-3">
                     <div class="container px-5 my-5">
-                        <div class="row gx-5">
+                        <div class="row gx-1">
+
+  
                         @foreach ($desc as $team)
 
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 zoom">
-                            <div style="position: relative;">
-                                <img class="card-img-top imagesFit" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
-                            </div>
-                            <div class="col-md-12 text-center p-2">
-                                <div>
-                                  <h5 class="mt-2 fw-bold mb-0 fs-6">{{ $team->member_name  }}</h5>
-                                  <h6 class="mb-3 fs-6">{{ $team->member_position  }}</h6>
+                 
+                        <div class="col-lg-12 col-xl-6 col-md-12 mb-5 mt-2">
+                            <div class="row">
+
+                                <div class="col-4 col-sm-5 col-lg-2 col-xl-3 col-md-3 d-none d-md-block">
+                                    <img class="card-img-top rounded" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
+                                    <div class="text-center mt-3">
+                                     
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->facebook}}@endif @endforeach"><i class="bi bi-facebook mx-2"></i></a>
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->instagram}}@endif @endforeach"><i class="bi bi-instagram mx-2"></i></a>
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->twitter}}@endif @endforeach"><i class="bi bi-twitter mx-2"></i></a>
+                                       
+                                        </div>
                                 </div>
+
+                                <div class="col-sm-12 col-lg-10 col-xl-9  col-md-9 col-12">
+
+                                    <div class="row">
+                                        <div class="col-3 d-block d-md-none">
+                                            <img class="card-img-top rounded" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
+                                        </div>
+                                        <div class="col-9 col-md-12">
+                                            <h4 class="montserrat me-xl-5 p-0 m-0">{{ $team->member_name }}</h4>
+                                            <div class="d-flex align-items-center">
+                                                <img style="width: 15px;" class="me-2" src={{ asset('assets/galila_logo_small.png') }} alt="..." />
+                                                {{ $team->member_position }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="mt-3 me-xl-5">
+                                        {{ $team->member_bio }}
+                                    </div>
+
+                                    <div class="mt-3 p-0 d-block d-md-none">
+
+                                        <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->facebook}}@endif @endforeach"><i class="bi bi-facebook mx-2"></i></a>
+                                        <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->instagram}}@endif @endforeach"><i class="bi bi-instagram mx-2"></i></a>
+                                        <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->twitter}}@endif @endforeach"><i class="bi bi-twitter mx-2"></i></a>
+                                   
+                                    </div>
+
+                                </div>
+                                
+
                             </div>
                         </div>
-                        
+
+                      
+
+ 
                         @endforeach
                     </div>
                 </div>

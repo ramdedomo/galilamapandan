@@ -60,14 +60,16 @@ Route::get('/activitiesandprograms',[GalilamapandanDB::class, 'activities_desc_v
 Route::post('sendMessage', [GalilamapandanDB::class, 'sendMessage'])->name('sendMessage');
 
 Route::group(['middleware'=>['sessionCheck']], function(){
+
     
     Route::get('/deleteMessage/{id}',[GalilamapandanDB::class, 'deleteMessage'])->name('deleteMessage');
     
     Route::post('updateYearPhoto/{id}', [GalilamapandanDB::class, 'updateYearPhoto'])->name('updateYearPhoto');
     Route::post('updateAdvocacyPhoto/{id}', [GalilamapandanDB::class, 'updateAdvocacyPhoto'])->name('updateAdvocacyPhoto');
 
-
-
+    
+    Route::post('updateItem/{id}', [GalilamapandanDB::class, 'updateItem'])->name('updateItem');
+    
     Route::post('updateAboutdesc', [GalilamapandanDB::class, 'updateAboutdesc'])->name('updateAboutdesc');
     Route::get('theteamdescUpdate', [GalilamapandanDB::class, 'theteamdescUpdate'])->name('theteamdescUpdate');
     Route::get('contactdescUpdate', [GalilamapandanDB::class, 'contactdescUpdate'])->name('contactdescUpdate');
@@ -75,12 +77,17 @@ Route::group(['middleware'=>['sessionCheck']], function(){
     
     Route::post('addSocial', [GalilamapandanDB::class, 'addSocial'])->name('addSocial');
     Route::post('deleteSocial', [GalilamapandanDB::class, 'deleteSocial'])->name('deleteSocial');
-    
+
+
+    Route::post('addImage/{id}', [GalilamapandanDB::class, 'addImage'])->name('addImage');
+    Route::post('deleteImage', [GalilamapandanDB::class, 'deleteImage'])->name('deleteImage');
+
 
     Route::get('removeMember/{id}', [GalilamapandanDB::class, 'removeMember'])->name('removeMember');
     Route::post('updateMember/{id}', [GalilamapandanDB::class, 'updateMember'])->name('updateMember');
     Route::post('addMember', [GalilamapandanDB::class, 'addMember'])->name('addMember');
     
+    Route::post('/updateEvent/{month}/{id}',[GalilamapandanDB::class, 'updateEvent'])->name('updateEvent');
     Route::post('/addEvent/{id}', [GalilamapandanDB::class, 'addEvent'])->name('addEvent');
     Route::get('/deleteEvent/{month}/{id}', [GalilamapandanDB::class, 'deleteEvent'])->name('deleteEvent');
     

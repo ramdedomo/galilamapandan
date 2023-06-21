@@ -81,16 +81,257 @@
                             $counteractive = 0;
                             $modalid = "viewItem";
                             $btnmodalid = "#viewItem";
-   
+
+                            $modalid_update = "updateItem";
+                            $showmodalid_update = "#updateItem";
+
+                            $design_update = 'design_update';
+                            $desc_update = 'desc_update';
+                            $header_update = 'header_update';
+                            $url_update = 'url_update';
+                            $buttonname_update = 'buttonname_update';
+                            $sizebox_update = 'sizebox_update';
+                            $words1_update = 'words1_update';
+                            $words2_update = 'words2_update';
+                            $words3_update = 'words3_update';
+                            $active_update = 'active_update';
+
                             @endphp
    
 
                         @foreach ($desc as $items)    
 
+                        
                         @php
                         $a = $modalid . $counter;
                         $b = $btnmodalid . $counter;
+
+                        $c = $modalid_update . $counter;
+                        $d = $showmodalid_update . $counter;
+
+                        $design = $design_update . $items->carousel_item_id;
+                        $desc = $desc_update . $items->carousel_item_id;
+                        $header = $header_update . $items->carousel_item_id;
+                        $url = $url_update . $items->carousel_item_id;
+                        $buttonname = $buttonname_update . $items->carousel_item_id;
+                        $sizebox = $sizebox_update . $items->carousel_item_id;
+                        $words1 = $words1_update . $items->carousel_item_id;
+                        $words2 = $words2_update . $items->carousel_item_id;
+                        $words3 = $words3_update . $items->carousel_item_id;
+                        $active = $active_update . $items->carousel_item_id;
+
+
                         @endphp
+
+
+                        <div class="modal fade" id="{{$c}}" tabindex="-1" aria-labelledby="createAdvocacyLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable p-5">
+                              <div class="modal-content">
+                                <div class="modal-header">
+    
+                                    <div style="width: 10%"><img width="55%"  class="img-fluid" src={{ asset('assets/galila_logo40x40.png') }} alt="..." /></div>
+                                    <div>
+                                        <div class="text-start float0">
+                                            <div class="fs-6 fw-bolder text-dark montserrat mt-1">Update</div>
+                                        </div>
+                                    </div>
+    
+                                  <button type="button" class="btn m-0 p-0" style="border: none;" data-bs-dismiss="modal" aria-label="Close"><i class=" text-secondary fs-5 bi bi-x-circle-fill"></i></button>
+                                    </div>
+
+                                            <div class="modal-body p-2">
+                                                <form action="/updateItem/{{$items->carousel_item_id}}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="bg-dark rounded p-2 bg-opacity-10">
+                                        
+                                                        <select name="{{$design}}" id="{{$design}}" class="form-select" aria-label="Default select example">
+
+                                                            <option value="@if($items->carousel_item_design == 1)1 @elseif ($items->carousel_item_design == 2)2 @else 3 @endif">
+                                                                Current:
+                                                                @if ($items->carousel_item_design == 1)
+                                                                Design 1 - With Logo
+                                                                @elseif ($items->carousel_item_design == 2)
+                                                                Design 2 - No Logo
+                                                                @else
+                                                                Image Only
+                                                                @endif
+                                                            </option>
+
+                                                            <option value="1">Design 1 - With Logo</option>
+                                                            <option value="2">Design 2 - No Logo</option>
+                                                            <option value="3">Image Only</option>
+                                                        </select>
+
+
+                                                        <div class="col-12 mt-2">
+    
+                                                            <span style="font-size: 10px" class="text-danger">
+                                                                @error($header){{ $message }}
+                                                                <script>
+                                                                    $(function() {
+                                                                        $('{{$d}}').modal('show');
+                                                                    });
+                                                                </script>
+                                                                
+                                                                @enderror
+                                                            </span>
+            
+                                                            <span id="{{$words1}}" style="font-size: 10px" class="">Recommended Words: <b>3 to 5 Words</b></span>
+                                                            <input value="{{$items->carousel_item_header}}" type="text" id="{{$header}}" name="{{$header}}" placeholder="Title" class="form-control">
+                                                        </div>
+
+
+                                                        <div class="col-12 mt-2">
+    
+                                                            <span style="font-size: 10px" class="text-danger">
+                                                                @error($desc){{ $message }}
+            
+                                                                <script>
+                                                                    $(function() {
+                                                                        $('{{$d}}').modal('show');
+                                                                    });
+                                                                </script>
+                                                                
+                                                                @enderror
+                                                            </span>
+        
+                                                                
+                                                            <span id="{{$words2}}" style="font-size: 10px" class="">Recommended Words: <b>50 to 60 Words</b></span>
+                                                            <textarea value="{{$items->carousel_item_desc}}" type="text" id="{{$desc}}" name="{{$desc}}" placeholder="Description" class="form-control">{{$items->carousel_item_desc}}</textarea>
+                                                          </div>
+
+
+                                                        <div id="sizebox" style="height: 20px"></div>
+      
+      
+                                                        <div class="col-12 mt-2">
+          
+                                                          <span style="font-size: 10px" class="text-danger">
+                                                              @error($buttonname){{ $message }}
+          
+                                                              <script>
+                                                                  $(function() {
+                                                                      $('{{$d}}').modal('show');
+                                                                  });
+                                                              </script>
+                                                              
+                                                              @enderror
+                                                          </span>
+                                                          
+                                                          <input value="{{$items->carousel_item_button_name}}" type="text" id="{{$buttonname}}" name="{{$buttonname}}" placeholder="Button Name" class="form-control">
+                                                        </div>
+
+                                                        <div class="col-12 mt-2">
+    
+                                                            <span style="font-size: 10px" class="text-danger">
+                                                                @error($url){{ $message }}
+            
+                                                                <script>
+                                                                    $(function() {
+                                                                        $('{{$d}}').modal('show');
+                                                                    });
+                                                                </script>
+                                                                
+                                                                @enderror
+                                                            </span>
+                                                            
+                                                            <input value="{{$items->carousel_item_url}}" type="text" id="{{$url}}" name="{{$url}}" placeholder="URL" class="form-control">
+                                                          </div>
+
+
+                                                          <div class="mt-3">
+                                                            <span id="words4" style="font-size: 10px" class="text-dark">Current Photo:</span>
+                                                            <img style="width: 100%;" class="rounded shadow" src="{{ 'data:image/png;base64,' . $items->carousel_item_bg }}" alt="...">
+                                                          </div>
+
+                                                       
+                                                            
+                                                            <div class="col-12 mt-2"> 
+
+                                                                <span style="font-size: 10px" class="text-danger">
+                                                                    @error('file'){{ $message }}
+                
+                                                                    <script>
+                                                                        $(function() {
+                                                                            $('{{$d}}').modal('show');
+                                                                        });
+                                                                    </script>
+                                                                    
+                                                                    @enderror
+                                                                </span>
+
+                                                                <span id="words3" style="font-size: 10px" class="text-dark">Recommended Size: <b>16:9 Ratio</b></span>
+                                                                <input type="file" name="file" class="form-control mb-4">
+                                                            </div>
+        
+
+                                                    </div>
+                                            </div>
+
+
+                                            <script>
+
+                                                $( document ).ready(function() {
+
+
+                                                    if($( "#{{$design}} option:selected" ).val() == 3){
+                                                        $("#{{$desc}}").hide();
+                                                        $("#{{$header}}").hide();
+                                                        $("#{{$url}}").hide();
+                                                        $("#{{$buttonname}}").hide();
+                                                        $("#{{$sizebox}}").hide();
+                                                        $("#{{$words1}}").hide();
+                                                        $("#{{$words2}}").hide();
+                                                    }else{
+                                                        $("#{{$desc}}").show();
+                                                        $("#{{$header}}").show();
+                                                        $("#{{$url}}").show();
+                                                        $("#{{$buttonname}}").show();
+                                                        $("#{{$sizebox}}").show();
+                                                        $("#{{$words1}}").show();
+                                                        $("#{{$words2}}").show();
+                                                    }
+
+
+                                                    $( "#{{$design}}" ).change(function() {
+                                                    console.log("asd");
+                                                    console.log($( "#{{$design}} option:selected" ).text());
+                                                    console.log($( "#{{$design}} option:selected" ).val());
+                                    
+                                                    if($( "#{{$design}} option:selected" ).val() == 3){
+                                                        $("#{{$desc}}").hide();
+                                                        $("#{{$header}}").hide();
+                                                        $("#{{$url}}").hide();
+                                                        $("#{{$buttonname}}").hide();
+                                                        $("#{{$sizebox}}").hide();
+                                                        $("#{{$words1}}").hide();
+                                                        $("#{{$words2}}").hide();
+                                                    }else{
+                                                        $("#{{$desc}}").show();
+                                                        $("#{{$header}}").show();
+                                                        $("#{{$url}}").show();
+                                                        $("#{{$buttonname}}").show();
+                                                        $("#{{$sizebox}}").show();
+                                                        $("#{{$words1}}").show();
+                                                        $("#{{$words2}}").show();
+                                                    }
+                                    
+                                                    });
+                                    
+                                                });
+                                    
+                                            </script>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" style="background-color:#03C85D; color: white" class="btn">Update</button>
+                                              </div>
+                                            </form>
+
+                                        </div>
+                                     </div>                         
+                              </div>
+                            
 
 
                         <div class="col-xl-4 col-lg-6 mb-5 col-md-6 zoom">
@@ -120,14 +361,16 @@
                                     <p style="font-size: 12px" class="fw-normal text-dark">{{ $items->carousel_item_desc }}</p>
                                     @endif
 
+                                    <a data-bs-toggle="modal" data-bs-target="{{$d}}" class="text-decoration-none stretched-link"></a>
                                 </div>
                             </div>
 
                             @if ($items->carousel_item_active == 1)
-                            <div class="fw-normal text-dark float-end mt-3" style="font-size: 10px">To Delete this you need to assign another active item</div>
+                            <div class="fw-normal text-dark float-end mt-3" style="font-size: 10px">To Delete this you need to assign new active item</div>
                             @else
                              <a href={{ '/deleteItem/' . $items->carousel_item_id  }} class="btn btn-secondary btn-sm float-end mt-3"><i class="bi bi-trash-fill"></i></a>
                              <a href={{ '/activeItem/' . $items->carousel_item_id  }} style="background-color: #03C85D" class="btn btn-sm float-end mt-3 me-2"><i class="bi bi-bookmark-fill text-light"></i></a>
+                            
                             @endif
 
                         </div>
@@ -137,6 +380,7 @@
                         @endphp
 
                         @endforeach
+
 
                         
                         <div class="modal fade" id="createItem" tabindex="-1" aria-labelledby="createAdvocacyLabel" aria-hidden="true">
@@ -154,9 +398,7 @@
                                   <button type="button" class="btn m-0 p-0" style="border: none;" data-bs-dismiss="modal" aria-label="Close"><i class=" text-secondary fs-5 bi bi-x-circle-fill"></i></button>
                                 </div>
                                 <div class="modal-body p-2">
-    
-
-                                    
+      
                                     <form action="{{ route('addItem') }}" method="post" enctype="multipart/form-data">
 
                                         @csrf
@@ -278,7 +520,8 @@
                                                         @enderror
                                                     </span>
 
-                                                    @if($counteractive > 0)                                          
+                                                    @if($counteractive > 0)     
+                                                        <span id="words3" style="font-size: 10px" class="">Active:</span>
                                                         <select disabled name="active" id="active" class="form-select" aria-label="Default select example">
                                                             <option>There is current active Item</option>
                                                         </select>
@@ -354,7 +597,10 @@
 
 
         <script>
+
             $( document ).ready(function() {
+
+
                 $( "#design" ).change(function() {
                 console.log("asd");
                 console.log($( "#design option:selected" ).text());
@@ -368,8 +614,6 @@
                     $("#sizebox").hide();
                     $("#words1").hide();
                     $("#words2").hide();
-                    $("#words3").hide();
-                    
                 }else{
                     $("#desc").show();
                     $("#header").show();
@@ -378,11 +622,13 @@
                     $("#sizebox").show();
                     $("#words1").show();
                     $("#words2").show();
-                    $("#words3").show();
                 }
 
                 });
+
+
             });
+
         </script>
 
 

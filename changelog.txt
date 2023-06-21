@@ -1,0 +1,8 @@
+20/06/2022
+UI - Added Member Social Media and Bio
+
+21/06/2022
+UI - Added Carousel Images on Campaigns
+
+25/06/2022
+UI - Removed Repetitive 'No Event Occured' in Activities and Programs Year

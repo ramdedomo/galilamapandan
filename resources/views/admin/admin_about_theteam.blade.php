@@ -186,8 +186,62 @@
                         $b = $btnmodalid . $counter;
                         @endphp
 
-                        
+      
 
+                            <div class="col-lg-12 col-xl-6 col-md-12 mb-5 mt-2">
+                                <div class="row">
+
+                                    <div class="col-4 col-sm-5 col-lg-2 col-xl-3 col-md-3 d-none d-md-block">
+                                        <div style="position: relative;">
+                                            <img class="card-img-top rounded" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
+                                            <button data-bs-toggle="modal" data-bs-target={{ $b }}  class="btnEditmember btn text-light"><i class="bi bi-pencil-fill"></i></button>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id) {{$msocial->facebook}} @endif @endforeach"><i class="bi bi-facebook mx-2"></i></a>
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->instagram}}@endif @endforeach"><i class="bi bi-instagram mx-2"></i></a>
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->twitter}}@endif @endforeach"><i class="bi bi-twitter mx-2"></i></a>
+                                       
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="col-sm-12 col-lg-10 col-xl-9  col-md-9 col-12">
+
+                                        <div class="row">
+                                            <div class="col-3 d-block d-md-none">
+                                                <img class="card-img-top rounded" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
+                                            </div>
+                                            <div class="col-9 col-md-12">
+                                                <h4 class="montserrat me-xl-5 p-0 m-0">{{ $team->member_name }}</h4>
+                                                <div class="d-flex align-items-center">
+                                                    <img style="width: 15px;" class="me-2" src={{ asset('assets/galila_logo_small.png') }} alt="..." />
+                                                    {{ $team->member_position }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="mt-3 me-xl-5">
+                                            {{ $team->member_bio }}
+                                        </div>
+
+                                        <div class="mt-3 p-0 d-block d-md-none">
+
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->facebook}}@endif @endforeach"><i class="bi bi-facebook mx-2"></i></a>
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->instagram}}@endif @endforeach"><i class="bi bi-instagram mx-2"></i></a>
+                                            <a class="text-dark" href="@foreach ($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->twitter}}@endif @endforeach"><i class="bi bi-twitter mx-2"></i></a>
+                                       
+                                        </div>
+
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+ 
+
+{{-- 
                         <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 zoom">
                             <div style="position: relative;">
                                 <img class="card-img-top imagesFit" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
@@ -199,7 +253,8 @@
                                 <h6 class="mb-3 fs-6">{{ $team->member_position  }}</h6>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
 
 
                         <div class="modal fade" id={{ $a }} tabindex="-1" aria-hidden="true">
@@ -223,10 +278,9 @@
                                         <div class="bg-dark rounded p-2 bg-opacity-10">
                                             <div class="row">
 
-    
+                                                <span style="font-size: 10px" class="text-dark">Current Photo</span>
                                                 <div class="col-12"> 
                                                     <img class="card-img-top d-none d-sm-block shadow" src="{{ 'data:image/png;base64,' . $team->display_picture }}" alt="..." />
-
 
                                                     <span style="font-size: 10px" class="text-danger">
                                                         @error('file'){{ $message }}
@@ -260,6 +314,7 @@
                                                         @enderror
                                                     </span>
 
+                                                    <span style="font-size: 10px" class="text-dark">Name</span>
                                                     <input type="text" name="memberName" value='{{ $team->member_name }}' placeholder="Name" class="form-control">
                                                 </div>
     
@@ -270,15 +325,16 @@
                                                         @error('memberPosition'){{ $message }}
     
                                                         <script>
-                                                            $(function() {
-                                                                $('#memberPosition').modal('show');
-                                                            });
-                                                        </script>
+                                                            var jobs = @json($b);
+                                                                $(function() {
+                                                                    $(jobs).modal('show');
+                                                                });
+                                                            </script>
                                                         
                                                         @enderror
                                                     </span>
     
-    
+                                                    <span style="font-size: 10px" class="text-dark">Member Position</span>
                                                     <input type="text" value='{{ $team->member_position }}' name="memberPosition" placeholder="Position" class="form-control">
                                                 </div>
 
@@ -289,16 +345,100 @@
                                                         @error('memberOrder'){{ $message }}
     
                                                         <script>
-                                                            $(function() {
-                                                                $('#memberOrder').modal('show');
-                                                            });
-                                                        </script>
+                                                            var jobs = @json($b);
+                                                                $(function() {
+                                                                    $(jobs).modal('show');
+                                                                });
+                                                            </script>
                                                         
                                                         @enderror
                                                     </span>
     
-    
+                                                    <span style="font-size: 10px" class="text-dark">Member Order</span>
                                                     <input type="number" value='{{ $team->member_order }}' name="memberOrder" placeholder="Order" class="form-control">
+                                                </div>
+
+
+
+                                                <div class="col-12 mt-2">
+    
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error('bio'){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($b);
+                                                                $(function() {
+                                                                    $(jobs).modal('show');
+                                                                });
+                                                            </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+    
+                                                    <span style="font-size: 10px" class="text-dark">Bio</span>
+                                                    <textarea type="text" value="{{$team->member_bio}}" name="memberBio" class="form-control">{{$team->member_bio}}</textarea>
+                                                </div>
+
+
+                                                <div id="sizebox" style="height: 20px"></div>
+    
+                                                <div class="col-12 mt-4">
+    
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error('facebook'){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($b);
+                                                                $(function() {
+                                                                    $(jobs).modal('show');
+                                                                });
+                                                            </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+    
+                                                    <span style="font-size: 10px" class="text-dark">Facebook</span>
+                                                    <input type="text" value="@foreach($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->facebook}}@endif{{trim(" ");}}@endforeach" name="facebook" placeholder="Facebook" class="form-control">
+                                                </div>
+
+
+                                                <div class="col-12 mt-1">
+    
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error('instagram'){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($b);
+                                                                $(function() {
+                                                                    $(jobs).modal('show');
+                                                                });
+                                                            </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+    
+                                                    <span style="font-size: 10px" class="text-dark">Instagram</span>
+                                                    <input type="text" value="@foreach($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->instagram}}@endif{{trim(" ");}}@endforeach" name="instagram" placeholder="Instagram" class="form-control">
+                                                </div>
+
+
+                                                <div class="col-12 mt-1">
+    
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error('twitter'){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($b);
+                                                                $(function() {
+                                                                    $(jobs).modal('show');
+                                                                });
+                                                            </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+    
+                                                    <span style="font-size: 10px" class="text-dark">Twitter</span>
+                                                    <input type="text" value="@foreach($member_socials as $msocial)@if($msocial->member_social_id == $team->member_social_id){{$msocial->twitter}}@endif{{trim(" ");}}@endforeach" name="twitter" placeholder="Twitter" class="form-control">
                                                 </div>
 
 
@@ -432,6 +572,85 @@
 
 
                                                 <input type="number" name="memberOrderadd" placeholder="Order" class="form-control">
+                                            </div>
+
+
+                                            <div class="col-12 mt-2">
+    
+                                                <span style="font-size: 10px" class="text-danger">
+                                                    @error('memberBioadd'){{ $message }}
+
+                                                    <script>
+                                                        $(function() {
+                                                            $('#newMember').modal('show');
+                                                        });
+                                                    </script>
+                                                    
+                                                    @enderror
+                                                </span>
+
+
+                                                <textarea type="text"  name="memberBioadd" placeholder="Bio" class="form-control"></textarea>
+                                            </div>
+
+
+                                            <div id="sizebox" style="height: 20px"></div>
+
+
+                                            <div class="col-12 mt-4">
+    
+                                                <span style="font-size: 10px" class="text-danger">
+                                                    @error('facebook'){{ $message }}
+
+                                                    <script>
+                                                        $(function() {
+                                                            $('#newMember').modal('show');
+                                                        });
+                                                    </script>
+                                                    
+                                                    @enderror
+                                                </span>
+
+                                                <span style="font-size: 10px" class="text-dark">Facebook URL:</span>
+                                                <input type="text" name="facebook" placeholder="Facebook" class="form-control">
+                                            </div>
+
+
+                                            <div class="col-12 mt-1">
+
+                                                <span style="font-size: 10px" class="text-danger">
+                                                    @error('instagram'){{ $message }}
+
+                                                    <script>
+                                                        $(function() {
+                                                            $('#newMember').modal('show');
+                                                        });
+                                                    </script>
+                                                    
+                                                    @enderror
+                                                </span>
+
+                                                <span style="font-size: 10px" class="text-dark">Instagram URL:</span>
+                                                <input type="text" name="instagram" placeholder="Instagram" class="form-control">
+                                            </div>
+
+
+                                            <div class="col-12 mt-1">
+
+                                                <span style="font-size: 10px" class="text-danger">
+                                                    @error('twitter'){{ $message }}
+
+                                                    <script>
+                                                        $(function() {
+                                                            $('#newMember').modal('show');
+                                                        });
+                                                    </script>
+                                                    
+                                                    @enderror
+                                                </span>
+
+                                                <span style="font-size: 10px" class="text-dark">Twitter URL:</span>
+                                                <input type="text"  name="twitter" placeholder="Twitter" class="form-control">
                                             </div>
 
 

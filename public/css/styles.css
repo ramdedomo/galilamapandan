@@ -13,6 +13,10 @@
    font-family: "Montserrat", sans-serif;
  }
 
+ .dayHovered:hover {
+  background-color: #03c85c9d;
+ }
+ 
 
  .imagesFit{
   width: 100%;

@@ -64,11 +64,9 @@
 
                     <div class="text-dark text-end col-12">
                         <?php
-                            date_default_timezone_set('Asia/Manila');
-                            echo date("Y-m-d") ;
-                            echo " / ";
+                            date_default_timezone_set('Asia/Manila');                  
                             echo "<span style='color: #03C85D;'><b>";
-                            echo date("h:i l");
+                            echo date('l jS F Y / h:i');
                             {{"</b></span>";}}
                         ?>
                     </div>

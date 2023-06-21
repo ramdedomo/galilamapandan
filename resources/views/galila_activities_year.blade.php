@@ -140,10 +140,13 @@
                     @foreach ($jan as $a)
                         @if(($counter[0] % 2 != 0) && ($counter[0] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                    <div class="numberCircle me-3 fw-bold text-dark">
-                                        {{  date('d', strtotime($a->jan_event_date)) }}
-                                    </div>
-                                    <div>
+
+                                    <a class="text-decoration-none">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
+                                            {{  date('d', strtotime($a->jan_event_date)) }}
+                                        </div>
+                                    </a>
+
                                         <span class="fw-bold">{{  strtoupper($a->jan_event_title) }}</span>
                                         <p>{{ $a->jan_event_description }}</p>
                                     </div>
@@ -151,9 +154,12 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                 
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <a class="text-decoration-none">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->jan_event_date)) }} 
                                     </div>
+                                    </a>
+
                                     <div>
                                         <span class="fw-bold">{{  strtoupper($a->jan_event_title) }}</span>
                                         <p>{{  $a->jan_event_description }}</p>
@@ -171,9 +177,12 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                       
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <a class="text-decoration-none">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->jan_event_date)) }}
                                         </div>
+                                         </a>
+
                                         <div>
                                             <span class="fw-bold">{{  strtoupper($a->jan_event_title) }}</span>
                                             <p>{{  $a->jan_event_description }}</p>
@@ -183,13 +192,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in january
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -208,7 +211,7 @@
                             @if(($counter[1] % 2 != 0) && ($counter[1] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                       
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->feb_event_date)) }}
                                         </div>
                                         <div>
@@ -219,7 +222,7 @@
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                        
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->feb_event_date)) }}
                                         </div>
                                         <div>
@@ -239,7 +242,7 @@
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                           
-                                            <div class="numberCircle me-3 fw-bold text-dark">
+                                            <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                 {{  date('d', strtotime($a->feb_event_date)) }}
                                             </div>
                                             <div>
@@ -251,13 +254,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in February
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -278,7 +275,7 @@
                         @if(($counter[2] % 2 != 0) && ($counter[2] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->mar_event_date)) }}
                                     </div>
                                     <div>
@@ -289,7 +286,7 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                  
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->mar_event_date)) }}
                                     </div>
                                     <div>
@@ -309,7 +306,7 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                         
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->mar_event_date)) }}
                                         </div>
                                         <div>
@@ -321,13 +318,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in March
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -347,7 +338,7 @@
                         @if(($counter[3] % 2 != 0) && ($counter[3] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->apr_event_date)) }}
                                     </div>
                                     <div>
@@ -358,7 +349,7 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                     
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->apr_event_date)) }}
                                     </div>
                                     <div>
@@ -378,7 +369,7 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                     
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->apr_event_date)) }}
                                         </div>
                                         <div>
@@ -390,13 +381,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in April
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -418,7 +403,7 @@
                         @if(($counter[4] % 2 != 0) && ($counter[4] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->may_event_date)) }}
                                     </div>
                                     <div>
@@ -429,7 +414,7 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                   
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->may_event_date)) }}
                                     </div>
                                     <div>
@@ -449,7 +434,7 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                        
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->may_event_date)) }}
                                         </div>
                                         <div>
@@ -461,13 +446,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in May
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -486,7 +465,7 @@
                         @if(($counter[5] % 2 != 0) && ($counter[5] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                   
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->june_event_date)) }}
                                     </div>
                                     <div>
@@ -497,7 +476,7 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                   
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->june_event_date)) }}
                                     </div>
                                     <div>
@@ -517,7 +496,7 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                       
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->june_event_date)) }}
                                         </div>
                                         <div>
@@ -529,13 +508,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in June
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -554,7 +527,7 @@
                         @if(($counter[6] % 2 != 0) && ($counter[6] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->july_event_date)) }}
                                     </div>
                                     <div>
@@ -565,7 +538,7 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->july_event_date)) }}
                                     </div>
                                     <div>
@@ -585,7 +558,7 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                         
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->july_event_date)) }}
                                         </div>
                                         <div>
@@ -597,13 +570,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in July
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -624,7 +591,7 @@
                         @if(($counter[7] % 2 != 0) && ($counter[7] == $i))
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->aug_event_date)) }}
                                     </div>
                                     <div>
@@ -635,7 +602,7 @@
                         @else
                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                    
-                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                         {{  date('d', strtotime($a->aug_event_date)) }}
                                     </div>
                                     <div>
@@ -655,7 +622,7 @@
                         </div>   
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                        
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->aug_event_date)) }}
                                         </div>
                                         <div>
@@ -667,13 +634,7 @@
                     @endif
                     </div></div>
                     @else
-                    <div class="mt-5"><div class="row">
-                        <div>
-                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                No Events Occured in August
-                            </div>
-                        </div>
-                    </div></div>
+
                     @endif
 
 
@@ -695,7 +656,7 @@
                             @if(($counter[8] % 2 != 0) && ($counter[8] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                     
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->sept_event_date)) }}
                                         </div>
                                         <div>
@@ -706,7 +667,7 @@
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                 
-                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                             {{  date('d', strtotime($a->sept_event_date)) }}
                                         </div>
                                         <div>
@@ -726,7 +687,7 @@
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                            
-                                            <div class="numberCircle me-3 fw-bold text-dark">
+                                            <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                 {{  date('d', strtotime($a->sept_event_date)) }}
                                             </div>
                                             <div>
@@ -738,13 +699,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in September
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -767,7 +722,7 @@
                                 @if(($counter[9] % 2 != 0) && ($counter[9] == $i))
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                          
-                                            <div class="numberCircle me-3 fw-bold text-dark">
+                                            <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                 {{  date('d', strtotime($a->oct_event_date)) }}
                                             </div>
                                             <div>
@@ -778,7 +733,7 @@
                                 @else
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                           
-                                            <div class="numberCircle me-3 fw-bold text-dark">
+                                            <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                 {{  date('d', strtotime($a->oct_event_date)) }}
                                             </div>
                                             <div>
@@ -798,7 +753,7 @@
                                 </div>   
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                               
-                                                <div class="numberCircle me-3 fw-bold text-dark">
+                                                <div class="numberCircle me-3 fw-bold text-dar dayHovered">
                                                     {{  date('d', strtotime($a->oct_event_date)) }}
                                                 </div>
                                                 <div>
@@ -810,13 +765,7 @@
                             @endif
                             </div></div>
                             @else
-                            <div class="mt-5"><div class="row">
-                                <div>
-                                    <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                        No Events Occured in October
-                                    </div>
-                                </div>
-                            </div></div>
+
                             @endif
 
 
@@ -838,7 +787,7 @@
                                     @if(($counter[10] % 2 != 0) && ($counter[10] == $i))
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                                
-                                                <div class="numberCircle me-3 fw-bold text-dark">
+                                                <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                     {{  date('d', strtotime($a->nov_event_date)) }}
                                                 </div>
                                                 <div>
@@ -849,7 +798,7 @@
                                     @else
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
                                                
-                                                <div class="numberCircle me-3 fw-bold text-dark">
+                                                <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                     {{  date('d', strtotime($a->nov_event_date)) }}
                                                 </div>
                                                 <div>
@@ -869,7 +818,7 @@
                                     </div>   
                                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                                 
-                                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                         {{  date('d', strtotime($a->nov_event_date)) }}
                                                     </div>
                                                     <div>
@@ -881,13 +830,7 @@
                                 @endif
                                 </div></div>
                                 @else
-                                <div class="mt-5"><div class="row">
-                                    <div>
-                                        <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                            No Events Occured in November
-                                        </div>
-                                    </div>
-                                </div></div>
+
                                 @endif
 
 
@@ -909,7 +852,7 @@
                                         @if(($counter[11] % 2 != 0) && ($counter[11] == $i))
                                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                                   
-                                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                         {{  date('d', strtotime($a->dec_event_date)) }}
                                                     </div>
                                                     <div>
@@ -920,7 +863,7 @@
                                         @else
                                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
 
-                                                    <div class="numberCircle me-3 fw-bold text-dark">
+                                                    <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                         {{  date('d', strtotime($a->dec_event_date)) }}
                                                     </div>
                                                     <div>
@@ -940,7 +883,7 @@
                                         </div>   
                                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
                                                        
-                                                        <div class="numberCircle me-3 fw-bold text-dark">
+                                                        <div class="numberCircle me-3 fw-bold text-dark dayHovered">
                                                             {{  date('d', strtotime($a->dec_event_date)) }}
                                                         </div>
                                                         <div>
@@ -952,13 +895,7 @@
                                     @endif
                                     </div></div>
                                     @else
-                                    <div class="mt-5"><div class="row">
-                                        <div>
-                                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                                No Events Occured in December
-                                            </div>
-                                        </div>
-                                    </div></div>
+
                                     @endif
 
                     

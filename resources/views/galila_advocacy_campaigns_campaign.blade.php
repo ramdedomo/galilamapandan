@@ -16,6 +16,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ URL::asset('css/styles.css') }}" rel="stylesheet">
+        
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+
+
+
     </head>
     <body class="d-flex flex-column h-100 bg-dark bg-opacity-5">
         <main class="flex-shrink-0">
@@ -76,8 +82,32 @@
                 </div>
 
 
-    
-    
+
+
+                
+                <div class="container pb-5">
+
+                    <div class="site-section bg-left-half mb-5">
+                    <div class="container owl-2-style">
+                        <div class="owl-carousel owl-2 owl-theme">
+
+                            @foreach ($images as $img)
+                            <div style="position: relative;">
+                                <a href="{{ 'data:image/png;base64,' .  $img->display_image }}" data-fancybox="gallery" data-caption="{{$img->display_image_desc}}">
+                                    <img class="card-img-top rounded imagesFitBanner" src="{{ 'data:image/png;base64,' .  $img->display_image }}" alt="..." />
+                                </a> 
+                            </div>
+                            @endforeach
+                 
+
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+                
+                
+
             </header>
 
 
@@ -98,5 +128,54 @@
                 </div>
             </div>
         </footer>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+        <script>
+
+            if ( $('.owl-2').length > 0 ) {
+                  $('.owl-2').owlCarousel({
+                      center: false,
+                      items: 1,
+                      loop: true,
+                      stagePadding: 0,
+                      margin: 20,
+                      smartSpeed: 1000,
+                      autoplay: true,
+                      nav: true,
+                      navText : ['',''],
+                      dots: true,
+                      pauseOnHover: true,
+                      responsive:{
+                            0:{
+                                margin: 20,
+                              nav: true,
+                            items: 1,
+                            loop:false
+                            },
+                          600:{
+                              margin: 20,
+                              nav: true,
+                            items: 2,
+                            loop:false
+                          },
+                          1000:{
+                              margin: 20,
+                              stagePadding: 0,
+                              nav: true,
+                            items: 3,
+                            loop:false
+                          }
+                      }
+                  });            
+              }
+    
+      
+          </script>
+
     </body>
 </html>

@@ -349,6 +349,7 @@
                     //     echo $counter[$a];
                     // }
 
+                    $eventcounter = 0;
 
                     $i = 1;
                     @endphp
@@ -358,11 +359,122 @@
                         @if($counter[0] > 1)
                         <div class="mb-1">
                             <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">January</h5>
-                        </div>      
+                        </div>  
+
                         @foreach ($jan as $a)
+
+                        @php
+                            $modal_id = "editEvent" . $eventcounter;
+                            $button_id = "#editEvent" . $eventcounter;
+
+                            $jan_event_title = "jan_event_title" . $a->jan_event_id;
+                            $jan_event_date = "jan_event_date" .$a->jan_event_id;
+                            $jan_event_description = "jan_event_description" . $a->jan_event_id;
+                        @endphp
+
+                        <div class="modal fade" id="{{ $modal_id }}" tabindex="-1" aria-labelledby="editEventLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable p-5">
+                              <div class="modal-content">
+                                <div class="modal-header">
+            
+                                    <div style="width: 10%"><img width="55%"  class="img-fluid" src={{ asset('assets/galila_logo40x40.png') }} alt="..." /></div>
+                                    <div>
+                                        <div class="text-start float0">
+                                            <div class="fs-6 fw-bolder text-dark montserrat mt-1">Edit {{ $a->jan_event_title }}</div>
+                                        </div>
+                                    </div>
+            
+                                  <button type="button" class="btn m-0 p-0" style="border: none;" data-bs-dismiss="modal" aria-label="Close"><i class=" text-secondary fs-5 bi bi-x-circle-fill"></i></button>
+                                </div>
+                                <div class="modal-body p-2">
+            
+                                    <form action="/updateEvent/1/{{$a->jan_event_id}}" method="post">
+                                        @csrf
+                                        <div class="bg-dark rounded p-2 bg-opacity-10">
+                                            <div class="row"> 
+                                                
+
+                                                <div class="col-12">
+
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error($jan_event_title){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($button_id);
+                                                            $(function() {
+                                                                $(jobs).modal('show');
+                                                            });
+                                                        </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+
+                                                    <span style="font-size: 10px" class="text-dark">Name</span>
+                                                    <input type="text" name="{{$jan_event_title}}" value='{{ $a->jan_event_title }}' placeholder="Title" class="form-control">
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error($jan_event_date){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($button_id);
+                                                            $(function() {
+                                                                $(jobs).modal('show');
+                                                            });
+                                                        </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+
+                                                    <span style="font-size: 10px" class="text-dark">Date</span>
+                                                    <input type="date" name="{{$jan_event_date}}" value='{{ $a->jan_event_date }}' placeholder="Date" class="form-control">
+                                                </div>
+
+                                                
+                                                <div class="col-12">
+
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error($jan_event_description){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($button_id);
+                                                            $(function() {
+                                                                $(jobs).modal('show');
+                                                            });
+                                                        </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+
+                                                    <span style="font-size: 10px" class="text-dark">Description</span>
+                                                    <textarea name="{{$jan_event_description}}" value='{{ $a->jan_event_description }}' placeholder="Description" class="form-control">{{ $a->jan_event_description}}</textarea>
+                                                </div>
+
+            
+                                            </div>
+                                        </div>
+            
+                                     </div>                         
+                                    <div class="modal-footer">
+                                        <a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'1'.'/' .  $a->jan_event_id }} type="button" class="btn btn-danger"><i class="bi bi-file-minus"></i></a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" style="background-color:#03C85D; color: white" class="btn text-light">Save Changes</button>
+                                      </div>
+                                    </form>
+
+
+                              </div>
+                              
+                            </div>
+                          </div>
+
+
                             @if(($counter[0] % 2 != 0) && ($counter[0] == $i))
+
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'1'.'/' .  $a->jan_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a data-bs-toggle="modal" data-bs-target="{{$button_id}}" class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->jan_event_date)) }}
                                         </div>
@@ -373,7 +485,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'1'.'/' .  $a->jan_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a data-bs-toggle="modal" data-bs-target="{{$button_id}}" class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->jan_event_date)) }} 
                                         </div>
@@ -383,17 +495,130 @@
                                         </div>
                                     </div>  
                             @endif
+
                             @php
                                 $i++;
+                                $eventcounter++;
                             @endphp
+
                         @endforeach
+
                         @else
                             @foreach ($jan as $a)
+
+  
+                            @php
+                            $modal_id = "editEvent" . $eventcounter;
+                            $button_id = "#editEvent" . $eventcounter;
+
+                            $jan_event_title = "jan_event_title" . $a->jan_event_id;
+                            $jan_event_date = "jan_event_date" .$a->jan_event_id;
+                            $jan_event_description = "jan_event_description" . $a->jan_event_id;
+                        @endphp
+
+                        <div class="modal fade" id="{{ $modal_id }}" tabindex="-1" aria-labelledby="editEventLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable p-5">
+                              <div class="modal-content">
+                                <div class="modal-header">
+            
+                                    <div style="width: 10%"><img width="55%"  class="img-fluid" src={{ asset('assets/galila_logo40x40.png') }} alt="..." /></div>
+                                    <div>
+                                        <div class="text-start float0">
+                                            <div class="fs-6 fw-bolder text-dark montserrat mt-1">Edit {{ $a->jan_event_title }}</div>
+                                        </div>
+                                    </div>
+            
+                                  <button type="button" class="btn m-0 p-0" style="border: none;" data-bs-dismiss="modal" aria-label="Close"><i class=" text-secondary fs-5 bi bi-x-circle-fill"></i></button>
+                                </div>
+                                <div class="modal-body p-2">
+            
+                                    <form action="/updateEvent/1/{{$a->jan_event_id}}" method="post">
+                                        @csrf
+                                        <div class="bg-dark rounded p-2 bg-opacity-10">
+                                            <div class="row"> 
+                                                
+
+                                                <div class="col-12">
+
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error($jan_event_title){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($button_id);
+                                                            $(function() {
+                                                                $(jobs).modal('show');
+                                                            });
+                                                        </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+
+                                                    <span style="font-size: 10px" class="text-dark">Name</span>
+                                                    <input type="text" name="{{$jan_event_title}}" value='{{ $a->jan_event_title }}' placeholder="Title" class="form-control">
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error($jan_event_date){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($button_id);
+                                                            $(function() {
+                                                                $(jobs).modal('show');
+                                                            });
+                                                        </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+
+                                                    <span style="font-size: 10px" class="text-dark">Date</span>
+                                                    <input type="date" name="{{$jan_event_date}}" value='{{ $a->jan_event_date }}' placeholder="Date" class="form-control">
+                                                </div>
+
+                                                
+                                                <div class="col-12">
+
+                                                    <span style="font-size: 10px" class="text-danger">
+                                                        @error($jan_event_description){{ $message }}
+    
+                                                        <script>
+                                                            var jobs = @json($button_id);
+                                                            $(function() {
+                                                                $(jobs).modal('show');
+                                                            });
+                                                        </script>
+                                                        
+                                                        @enderror
+                                                    </span>
+
+                                                    <span style="font-size: 10px" class="text-dark">Description</span>
+                                                    <textarea name="{{$jan_event_description}}" value='{{ $a->jan_event_description }}' placeholder="Description" class="form-control">{{ $a->jan_event_description}}</textarea>
+                                                </div>
+
+            
+                                            </div>
+                                        </div>
+            
+                                     </div>                         
+                                    <div class="modal-footer">
+                                        <a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'1'.'/' .  $a->jan_event_id }} type="button" class="btn btn-danger"><i class="bi bi-file-minus"></i></a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" style="background-color:#03C85D; color: white" class="btn text-light">Save Changes</button>
+                                      </div>
+                                    </form>
+
+
+                              </div>
+                              
+                            </div>
+                          </div>
+                            
                             <div class="mb-1">
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">January</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'1'.'/' .  $a->jan_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a data-bs-toggle="modal" data-bs-target="{{$button_id}}" class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->jan_event_date)) }}
                                             </div>
@@ -406,17 +631,11 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in january
-                                </div>
-                            </div>
-                        </div></div>
+ 
                         @endif
 
 
- 
+
                             @php
                                 $i = 1;
                             @endphp
@@ -430,7 +649,7 @@
                             @foreach ($feb as $a)
                                 @if(($counter[1] % 2 != 0) && ($counter[1] == $i))
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'2'.'/' .  $a->feb_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'2'.'/' .  $a->feb_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->feb_event_date)) }}
                                             </div>
@@ -441,7 +660,7 @@
                                         </div>
                                 @else
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'2'.'/' .  $a->feb_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'2'.'/' .  $a->feb_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->feb_event_date)) }}
                                             </div>
@@ -461,7 +680,7 @@
                                     <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">February</h5>
                                 </div>   
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'2'.'/' .  $a->feb_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'2'.'/' .  $a->feb_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                 <div class="numberCircle me-3 fw-bold text-dark">
                                                     {{  date('d', strtotime($a->feb_event_date)) }}
                                                 </div>
@@ -474,13 +693,7 @@
                             @endif
                             </div></div>
                             @else
-                            <div class="mt-5"><div class="row">
-                                <div>
-                                    <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                        No Events Occured in February
-                                    </div>
-                                </div>
-                            </div></div>
+
                             @endif
 
 
@@ -499,7 +712,7 @@
                         @foreach ($mar as $a)
                             @if(($counter[2] % 2 != 0) && ($counter[2] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'3'.'/' .  $a->mar_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'3'.'/' .  $a->mar_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->mar_event_date)) }}
                                         </div>
@@ -510,7 +723,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'3'.'/' .  $a->mar_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'3'.'/' .  $a->mar_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->mar_event_date)) }}
                                         </div>
@@ -530,7 +743,7 @@
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">March</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'3'.'/' .  $a->mar_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'3'.'/' .  $a->mar_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->mar_event_date)) }}
                                             </div>
@@ -543,13 +756,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in March
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -568,7 +775,7 @@
                         @foreach ($apr as $a)
                             @if(($counter[3] % 2 != 0) && ($counter[3] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'4'.'/' .  $a->apr_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'4'.'/' .  $a->apr_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->apr_event_date)) }}
                                         </div>
@@ -579,7 +786,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'4'.'/' .  $a->apr_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'4'.'/' .  $a->apr_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->apr_event_date)) }}
                                         </div>
@@ -599,7 +806,7 @@
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">April</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'4'.'/' .  $a->apr_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'4'.'/' .  $a->apr_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->apr_event_date)) }}
                                             </div>
@@ -612,13 +819,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in April
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -639,7 +840,7 @@
                         @foreach ($may as $a)
                             @if(($counter[4] % 2 != 0) && ($counter[4] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'5'.'/' .  $a->may_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'5'.'/' .  $a->may_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->may_event_date)) }}
                                         </div>
@@ -650,7 +851,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'5'.'/' .  $a->may_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'5'.'/' .  $a->may_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->may_event_date)) }}
                                         </div>
@@ -670,7 +871,7 @@
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">May</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'5'.'/' .  $a->may_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'5'.'/' .  $a->may_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->may_event_date)) }}
                                             </div>
@@ -683,13 +884,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in May
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -707,7 +902,7 @@
                         @foreach ($june as $a)
                             @if(($counter[5] % 2 != 0) && ($counter[5] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'6'.'/' .  $a->june_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'6'.'/' .  $a->june_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->june_event_date)) }}
                                         </div>
@@ -718,7 +913,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'6'.'/' .  $a->june_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'6'.'/' .  $a->june_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->june_event_date)) }}
                                         </div>
@@ -738,7 +933,7 @@
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">June</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'6'.'/' .  $a->june_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'6'.'/' .  $a->june_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->june_event_date)) }}
                                             </div>
@@ -751,13 +946,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in June
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -776,7 +965,7 @@
                         @foreach ($july as $a)
                             @if(($counter[6] % 2 != 0) && ($counter[6] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'7'.'/' .  $a->july_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'7'.'/' .  $a->july_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->july_event_date)) }}
                                         </div>
@@ -787,7 +976,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'7'.'/' .  $a->july_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'7'.'/' .  $a->july_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->july_event_date)) }}
                                         </div>
@@ -807,7 +996,7 @@
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">July</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'7'.'/' .  $a->july_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'7'.'/' .  $a->july_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->july_event_date)) }}
                                             </div>
@@ -820,13 +1009,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in July
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -846,7 +1029,7 @@
                         @foreach ($aug as $a)
                             @if(($counter[7] % 2 != 0) && ($counter[7] == $i))
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'8'.'/' .  $a->aug_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'8'.'/' .  $a->aug_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->aug_event_date)) }}
                                         </div>
@@ -857,7 +1040,7 @@
                                     </div>
                             @else
                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'8'.'/' .  $a->aug_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'8'.'/' .  $a->aug_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                         <div class="numberCircle me-3 fw-bold text-dark">
                                             {{  date('d', strtotime($a->aug_event_date)) }}
                                         </div>
@@ -877,7 +1060,7 @@
                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">August</h5>
                             </div>   
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'8'.'/' .  $a->aug_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'8'.'/' .  $a->aug_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->aug_event_date)) }}
                                             </div>
@@ -890,13 +1073,7 @@
                         @endif
                         </div></div>
                         @else
-                        <div class="mt-5"><div class="row">
-                            <div>
-                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                    No Events Occured in August
-                                </div>
-                            </div>
-                        </div></div>
+
                         @endif
 
 
@@ -917,7 +1094,7 @@
                             @foreach ($sept as $a)
                                 @if(($counter[8] % 2 != 0) && ($counter[8] == $i))
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'9'.'/' .  $a->sept_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'9'.'/' .  $a->sept_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->sept_event_date)) }}
                                             </div>
@@ -928,7 +1105,7 @@
                                         </div>
                                 @else
                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'9'.'/' .  $a->sept_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'9'.'/' .  $a->sept_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                 {{  date('d', strtotime($a->sept_event_date)) }}
                                             </div>
@@ -948,7 +1125,7 @@
                                     <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">September</h5>
                                 </div>   
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'9'.'/' .  $a->sept_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'9'.'/' .  $a->sept_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                 <div class="numberCircle me-3 fw-bold text-dark">
                                                     {{  date('d', strtotime($a->sept_event_date)) }}
                                                 </div>
@@ -961,13 +1138,7 @@
                             @endif
                             </div></div>
                             @else
-                            <div class="mt-5"><div class="row">
-                                <div>
-                                    <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                        No Events Occured in September
-                                    </div>
-                                </div>
-                            </div></div>
+
                             @endif
 
 
@@ -989,7 +1160,7 @@
                                 @foreach ($oct as $a)
                                     @if(($counter[9] % 2 != 0) && ($counter[9] == $i))
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'10'.'/' .  $a->oct_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'10'.'/' .  $a->oct_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                 <div class="numberCircle me-3 fw-bold text-dark">
                                                     {{  date('d', strtotime($a->oct_event_date)) }}
                                                 </div>
@@ -1000,7 +1171,7 @@
                                             </div>
                                     @else
                                             <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'10'.'/' .  $a->oct_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'10'.'/' .  $a->oct_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                 <div class="numberCircle me-3 fw-bold text-dark">
                                                     {{  date('d', strtotime($a->oct_event_date)) }}
                                                 </div>
@@ -1020,7 +1191,7 @@
                                         <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">October</h5>
                                     </div>   
                                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                    <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'10'.'/' .  $a->oct_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                    <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'10'.'/' .  $a->oct_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                     <div class="numberCircle me-3 fw-bold text-dark">
                                                         {{  date('d', strtotime($a->oct_event_date)) }}
                                                     </div>
@@ -1033,13 +1204,7 @@
                                 @endif
                                 </div></div>
                                 @else
-                                <div class="mt-5"><div class="row">
-                                    <div>
-                                        <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                            No Events Occured in October
-                                        </div>
-                                    </div>
-                                </div></div>
+
                                 @endif
 
 
@@ -1060,7 +1225,7 @@
                                     @foreach ($nov as $a)
                                         @if(($counter[10] % 2 != 0) && ($counter[10] == $i))
                                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                    <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'11'.'/' .  $a->nov_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                    <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'11'.'/' .  $a->nov_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                     <div class="numberCircle me-3 fw-bold text-dark">
                                                         {{  date('d', strtotime($a->nov_event_date)) }}
                                                     </div>
@@ -1071,7 +1236,7 @@
                                                 </div>
                                         @else
                                                 <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                                    <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'11'.'/' .  $a->nov_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                    <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'11'.'/' .  $a->nov_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                     <div class="numberCircle me-3 fw-bold text-dark">
                                                         {{  date('d', strtotime($a->nov_event_date)) }}
                                                     </div>
@@ -1091,7 +1256,7 @@
                                             <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">November</h5>
                                         </div>   
                                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'11'.'/' .  $a->nov_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div> 
+                                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'11'.'/' .  $a->nov_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div> 
                                                         <div class="numberCircle me-3 fw-bold text-dark">
                                                             {{  date('d', strtotime($a->nov_event_date)) }}
                                                         </div>
@@ -1104,13 +1269,7 @@
                                     @endif
                                     </div></div>
                                     @else
-                                    <div class="mt-5"><div class="row">
-                                        <div>
-                                            <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                                No Events Occured in November
-                                            </div>
-                                        </div>
-                                    </div></div>
+
                                     @endif
 
 
@@ -1131,7 +1290,7 @@
                                         @foreach ($dec as $a)
                                             @if(($counter[11] % 2 != 0) && ($counter[11] == $i))
                                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'12'.'/' .  $a->dec_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'12'.'/' .  $a->dec_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                         <div class="numberCircle me-3 fw-bold text-dark">
                                                             {{  date('d', strtotime($a->dec_event_date)) }}
                                                         </div>
@@ -1142,7 +1301,7 @@
                                                     </div>
                                             @else
                                                     <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-4">
-                                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'12'.'/' .  $a->dec_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                        <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'12'.'/' .  $a->dec_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                         <div class="numberCircle me-3 fw-bold text-dark">
                                                             {{  date('d', strtotime($a->dec_event_date)) }}
                                                         </div>
@@ -1162,7 +1321,7 @@
                                                 <h5 class="montserrat bg-dark p-2 px-3 rounded bg-opacity-10">December</h5>
                                             </div>   
                                                         <div class="d-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 mb-5">
-                                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'12'.'/' .  $a->dec_event_id }} class="btn btn-sm"><i class="bi bi-file-x-fill"></i></a></div>
+                                                            <div class="height: auto;"><a onclick="return confirm('Are you sure to delete this Event?')" href={{'/deleteEvent/' .'12'.'/' .  $a->dec_event_id }} class="btn btn-sm"><i class="bi bi-gear-fill"></i></a></div>
                                                             <div class="numberCircle me-3 fw-bold text-dark">
                                                                 {{  date('d', strtotime($a->dec_event_date)) }}
                                                             </div>
@@ -1175,19 +1334,11 @@
                                         @endif
                                         </div></div>
                                         @else
-                                        <div class="mt-5"><div class="row">
-                                            <div>
-                                                <div class="text-center bg-dark rounded bg-opacity-10 p-2">
-                                                    No Events Occured in December
-                                                </div>
-                                            </div>
-                                        </div></div>
+ 
                                         @endif
 
 
     
-                        
-
 
                     @endif
                     {{-- end if for check if it has data --}}
