@@ -54,7 +54,7 @@ A Content Mangement System for Galila Mapandan.
 
 <div align="center">
     <i>
-    Thank you for galila mapandan for allowing me to create this project.
+    Thank you to galila mapandan for allowing me to create this project.
     </i>
 </div>
 
